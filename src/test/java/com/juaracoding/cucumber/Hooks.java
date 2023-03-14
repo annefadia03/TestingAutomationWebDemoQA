@@ -2,17 +2,40 @@ package com.juaracoding.cucumber;
 
 import com.juaracoding.cucumber.drivers.strategies.DriverSingleton;
 import com.juaracoding.cucumber.utils.Constants;
-import io.cucumber.java.AfterAll;
-import io.cucumber.java.Before;
+import com.juaracoding.cucumber.utils.Utils;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+import io.cucumber.java.*;
 import org.openqa.selenium.WebDriver;
+
+import java.io.IOException;
 
 public class Hooks {
     public static WebDriver driver;
+    public static ExtentTest extentTest;
+    public static ExtentReports reports = new ExtentReports("target/extent-report.html");
 
     @Before
     public static void setUp(){
        DriverSingleton.getInstance(Constants.CHROME);
        driver = DriverSingleton.getDriver();
+//       TestScenarios[] test = TestScenarios.values();
+//       extentTest = reports.startTest(test[Utils.testCount].getTestCaseName());
+//       Utils.testCount++;
+    }
+    @After
+    public void endTestCase(){
+        reports.endTest(extentTest);
+        reports.flush();
+    }
+    @AfterStep
+    public void getResultStatus(Scenario scanario) throws IOException {
+        if (scanario.isFailed()){
+            String screenshotPath = Utils.getScreenshot(driver, scanario.getName()).replace(" "," ");
+            extentTest.log(LogStatus.FAIL, scanario.getName()+"\n"
+                    +extentTest.addScreenCapture(screenshotPath));
+        }
     }
 
     @AfterAll

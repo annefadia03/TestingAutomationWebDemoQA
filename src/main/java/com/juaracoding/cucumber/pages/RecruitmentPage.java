@@ -19,6 +19,9 @@ public class RecruitmentPage {
     @FindBy(xpath = "//span[normalize-space()='Recruitment']")
     WebElement btnRecruitment;
 
+    @FindBy(xpath = "//h6[@class='oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module']")
+    WebElement txtRecruitment;
+
     @FindBy(xpath = "//button[normalize-space()='Add']")
     WebElement btnAdd;
 
@@ -61,20 +64,27 @@ public class RecruitmentPage {
     @FindBy(xpath = "//button[@type='submit']")
     WebElement btnSubmit;
 
-    public void addDataCandidate(){
-        inputFirstName.sendKeys("Anne");
-        inputMidleName.sendKeys("Fadia");
-        inputLastName.sendKeys("Ikhfa");
-        inputVacancy.sendKeys("Senior QA Lead");
-        inputEmail.sendKeys("annefadia143@gmail.com");
-        inputNumberHP.sendKeys("0822843006");
-        inputDoc.sendKeys("D:\\New DOCX Document.docx");
-        inputNote.sendKeys("sangjuara");
-        inputDate.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
-        inputDate.sendKeys("2023-03-11");
-        inputDesc.sendKeys("anne sukses");
-        btnCeklis.click();
-        btnSubmit.click();
+//    public void addDataCandidate(){
+//        inputFirstName.sendKeys("Anne");
+//        inputMidleName.sendKeys("Fadia");
+//        inputLastName.sendKeys("Ikhfa");
+//        inputVacancy.sendKeys("Senior QA Lead");
+//        inputEmail.sendKeys("annefadia143@gmail.com");
+//        inputNumberHP.sendKeys("0822843006");
+//        inputDoc.sendKeys("D:\\New DOCX Document.docx");
+//        inputNote.sendKeys("sangjuara");
+//        inputDate.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
+//        inputDate.sendKeys("2023-03-11");
+//        inputDesc.sendKeys("anne sukses");
+//        btnCeklis.click();
+//        btnSubmit.click();
+//    }
+
+    public void goToMenuRecruitment(){
+        btnRecruitment.click();
+    }
+    public String getTxtRecruitment(){
+        return txtRecruitment.getText();
     }
     public String getJudulAddPage(){
         return txtTitleAdd.getText();
@@ -82,8 +92,5 @@ public class RecruitmentPage {
 
     public void addDataPage(){
         btnAdd.click();
-    }
-    public void recruitmentPage(){
-        btnRecruitment.click();
     }
 }

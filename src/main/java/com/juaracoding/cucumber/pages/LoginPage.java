@@ -58,6 +58,11 @@ public class LoginPage {
     public void buttonLogin(){
         btnLogin.click();
     }
+    public void login(String username, String password){
+        this.username.sendKeys(username);
+        this.password.sendKeys(password);
+        btnLogin.click();
+    }
 
     public void setButtonLogout(){
         btnProfile.click();

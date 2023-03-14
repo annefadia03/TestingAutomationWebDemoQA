@@ -1,16 +1,15 @@
 package com.juaracoding.cucumber.pages;
 
-
-import org.openqa.selenium.WebDriver;
 import com.juaracoding.cucumber.drivers.strategies.DriverSingleton;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPageShop {
+public class LoginShopPages {
     private WebDriver driver;
 
-    public LoginPageShop() {
+    public LoginShopPages() {
         this.driver = DriverSingleton.getDriver();
         PageFactory.initElements(driver, this);
     }
@@ -36,21 +35,6 @@ public class LoginPageShop {
     @FindBy(xpath = "//a[@title='Password Lost and Found']")
     WebElement txtError;
 
-    @FindBy(xpath = "//a[normalize-space()='Orders']")
-    WebElement menuOrders;
-    @FindBy(xpath = "//a[@class='woocommerce-Button button']")
-    WebElement browProduct;
-    @FindBy(xpath = "//a[normalize-space()='black pointed toe barely there patent heels']")
-    WebElement txtProduct;
-    @FindBy(xpath = "//select[@id='pa_color']")
-    WebElement color;
-    @FindBy(xpath = "//select[@id='pa_size']")
-    WebElement size;
-//    @FindBy(xpath = "//input[@id='noo-quantity-2520']")
-//    WebElement qyt;
-    @FindBy(xpath = "//button[normalize-space()='Add to cart']")
-    WebElement btnAddCart;
-
     public String getMenuDashboard(){
         return menuDashboard.getText();
     }
@@ -72,25 +56,5 @@ public class LoginPageShop {
     }
     public void buttonLogin(){
         btnLogin.click();
-    }
-    public String getTxtAdd(){
-        return btnAddCart.getText();
-    }
-    public void orderItem(){
-        menuOrders.click();
-    }
-    public void browProduct(){
-        browProduct.click();
-    }
-    public void chooseItem(){
-        txtProduct.click();
-    }
-    public void chooseVariant(){
-        color.sendKeys("Black");
-        size.sendKeys("36");
-//        qyt.sendKeys("2");
-    }
-    public void addToCart(){
-        btnAddCart.click();
     }
 }
