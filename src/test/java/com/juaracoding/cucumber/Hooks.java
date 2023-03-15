@@ -8,7 +8,6 @@ import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import io.cucumber.java.*;
 import org.openqa.selenium.WebDriver;
-
 import java.io.IOException;
 
 public class Hooks {
@@ -20,9 +19,9 @@ public class Hooks {
     public static void setUp(){
        DriverSingleton.getInstance(Constants.CHROME);
        driver = DriverSingleton.getDriver();
-//       TestScenarios[] test = TestScenarios.values();
-//       extentTest = reports.startTest(test[Utils.testCount].getTestCaseName());
-//       Utils.testCount++;
+       TestScenarios[] test = TestScenarios.values();
+       extentTest = reports.startTest(test[Utils.testCount].getTestCaseName());
+       Utils.testCount++;
     }
     @After
     public void endTestCase(){
